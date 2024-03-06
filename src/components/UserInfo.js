@@ -7,6 +7,7 @@ const UserInfo = () => {
   });
   return (
     <div>
+      <h1>User Information</h1>
       <div className="form">
         <div>
           <label htmlFor="name">Name:</label>
@@ -29,7 +30,7 @@ const UserInfo = () => {
           />
         </div>
       </div>
-      <div>
+      <div className="output">
         <p>Current values in store:</p>
         <p>Name - {formData.Name}</p>
         <p>Email - {formData.Email}</p>
