@@ -1,38 +1,38 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-// import { useState } from 'react';
-import { email, name } from "../store/actions/actionType";
+import React, { useState } from "react";
+
 const UserInfo = () => {
-  // const [nameInput, setName] = useState("");
-  // const [emailInput, setEmail] = useState("");
-  const dispatch = useDispatch();
-
-  const { Name, Email } = useSelector((state) => state);
-  function handelEmailInput(e) {
-    dispatch(email(e.target.value));
-  }
-
-  function handelNameInput(e) {
-    dispatch(name(e.target.value));
-  }
-
+  const [formData, setFormData] = useState({
+    Name: "",
+    Email: "",
+  });
   return (
-    <div className="UserInfo">
-      <div>
-        <span>Name :</span>
-        <input type="text" onInput={handelNameInput}></input>
-        <br></br>
-        <br></br>
-        <span>Email :</span>
-        <input type="email" onInput={handelEmailInput}></input>
+    <div>
+      <div className="form">
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            onChange={(e) => setFormData({ ...formData, Name: e.target.value })}
+            name="name"
+            id="name"
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            onChange={(e) =>
+              setFormData({ ...formData, Email: e.target.value })
+            }
+            name="email"
+            id="email"
+          />
+        </div>
       </div>
-      <p>Current values in store:</p>
-
-      <div className="output">
-        <span>Name -</span> <span>{Name}</span>
-        <br></br>
-        <br></br>
-        <span>Email -</span> <span>{Email}</span>
+      <div>
+        <p>Current values in store:</p>
+        <p>Name - {formData.Name}</p>
+        <p>Email - {formData.Email}</p>
       </div>
     </div>
   );
